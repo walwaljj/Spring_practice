@@ -1,6 +1,5 @@
 package com.in28minutes.learnspringframework.game;
 
-import org.springframework.stereotype.Component;
 
 //@Component
 public class SuperContraGame implements GamingConsole{
