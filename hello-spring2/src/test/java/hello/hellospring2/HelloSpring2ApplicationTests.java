@@ -8,6 +8,7 @@ class HelloSpring2ApplicationTests {
 
 	@Test
 	void contextLoads() {
+		
 	}
 
 }
