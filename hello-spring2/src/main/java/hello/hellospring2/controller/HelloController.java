@@ -22,10 +22,29 @@ public class HelloController {
 	}
 	
 	@GetMapping("hello-string")
-	@ResponseBody
+	@ResponseBody //응답 바디부에 값(hello $name)을 그대로 넘김
 	public String helloString(@RequestParam("name") String name) {
 		
 		return "hello" + name;
 	}
 	
+	@GetMapping("hello-api")
+	@ResponseBody
+	public Hello hellpApi(@RequestParam ("name") String name) {
+		Hello hello = new Hello();
+		hello.setName(name);
+		return hello; // 객체를 반환함. -> Json 형태로 반환됨
+	}
+	
+	static class Hello{
+		private String name;
+	
+		public String getName() {
+			return name;
+		}
+		
+		public void setName(String name) {
+			this.name = name;
+		}
+	}
 }
