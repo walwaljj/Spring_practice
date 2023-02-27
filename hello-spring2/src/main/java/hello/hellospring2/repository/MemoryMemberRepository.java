@@ -13,6 +13,7 @@ public class MemoryMemberRepository implements MemberRepository{
 	private static Map<Long,Member> store = new HashMap<>();
 	
 	private static long sequence = 0L;//실무에서는 동시성 문제로 atuomlong 사용
+
 	
 	@Override
 	public Member save(Member member) {
@@ -27,7 +28,7 @@ public class MemoryMemberRepository implements MemberRepository{
 	}
 
 	@Override
-	public Optional<Member> findByName(Long name) {
+	public Optional<Member> findByName(String name) {
 		return store.values().stream().filter(member -> member.getName().equals(name)).findAny();
 	}
 
@@ -37,5 +38,8 @@ public class MemoryMemberRepository implements MemberRepository{
 		return new ArrayList<Member>(store.values());
 	}
 	
+	public void clearStore() {
+		store.clear();
+	}
 	
 }
