@@ -21,8 +21,6 @@ public class MemberService {
 		memberRepository.save(member);
 		return member.getId();
 		
-		
-		
 	}
 
 	//중복회원 검증 로직
