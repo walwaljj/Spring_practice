@@ -3,6 +3,7 @@ package hello.hellospring2.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 
 import hello.hellospring2.repository.MemberRepository;
 import hello.hellospring2.service.MemberService;
@@ -16,5 +17,16 @@ public class MemberController {
 	public MemberController(MemberService memberService) {
 		this.memberService = memberService;
 	}
+	
+	@GetMapping("/members/new")
+	public String createForm() {
+		return "members/createMemberForm";
+	}
+	
+	@GetMapping("/members")
+	public String ff() {
+		return "members/memberList";
+	}
+	
 
 }
