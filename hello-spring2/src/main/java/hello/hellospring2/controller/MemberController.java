@@ -1,10 +1,13 @@
 package hello.hellospring2.controller;
 
+import javax.annotation.PostConstruct;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import hello.hellospring2.domain.Member;
 import hello.hellospring2.repository.MemberRepository;
 import hello.hellospring2.service.MemberService;
 
@@ -23,9 +26,14 @@ public class MemberController {
 		return "members/createMemberForm";
 	}
 	
-	@GetMapping("/members")
-	public String ff() {
-		return "members/memberList";
+	@PostConstruct("/members/new")
+	public String create(memberForm form) {
+		Member member = new Member();
+		member.setName(form.getName());
+		
+		memberService.join(member);
+		
+		return "redirect:/";
 	}
 	
 
