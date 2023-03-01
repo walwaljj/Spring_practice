@@ -11,12 +11,12 @@ import hello.hellospring2.domain.Member;
 import hello.hellospring2.repository.MemberRepository;
 import hello.hellospring2.repository.MemoryMemberRepository;
 
-@Service
+
 public class MemberService {
 	
 	private final MemberRepository memberRepository;
 	
-	@Autowired
+	
 	public MemberService(MemberRepository memberRepository) {
 		this.memberRepository = memberRepository;
 	}
