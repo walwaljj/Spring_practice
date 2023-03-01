@@ -1,10 +1,27 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="utf-8">
-<title>Insert title here</title>
+
 </head>
 <body>
-	ff
+<div class="container">
+	<div>
+		<table>
+			<thead>
+				<tr>
+					<th>#</th>
+					<th>이름</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="member : ${members}">
+					<td th:text="${member.id}"/>
+					<td th:text="${member.name}"/><!-- Member class의 getName, getId에 접근함. -->
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
 </body>
 </html>

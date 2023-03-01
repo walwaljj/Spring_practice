@@ -1,11 +1,13 @@
 package hello.hellospring2.controller;
 
-import javax.annotation.PostConstruct;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import hello.hellospring2.domain.Member;
 import hello.hellospring2.repository.MemberRepository;
@@ -26,7 +28,7 @@ public class MemberController {
 		return "members/createMemberForm";
 	}
 	
-	@PostConstruct("/members/new")
+	@PostMapping("/members/new")
 	public String create(memberForm form) {
 		Member member = new Member();
 		member.setName(form.getName());
@@ -36,5 +38,11 @@ public class MemberController {
 		return "redirect:/";
 	}
 	
-
+	@GetMapping("members")
+	public String list(Model model) {
+		List<Member> members = memberService.findMembers();
+		model.addAttribute("members",members);
+		return "members/memberList";
+		
+	}
 }
