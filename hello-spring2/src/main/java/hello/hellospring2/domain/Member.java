@@ -1,6 +1,6 @@
 package hello.hellospring2.domain;
 
-@Entity
+
 public class Member {
 	
 	private Long id;
