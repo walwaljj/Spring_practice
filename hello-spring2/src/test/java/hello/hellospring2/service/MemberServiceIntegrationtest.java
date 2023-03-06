@@ -7,7 +7,9 @@ import org.apache.catalina.startup.ClassLoaderFactory.Repository;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
 
 import hello.hellospring2.domain.Member;
 import hello.hellospring2.repository.MemberRepository;
@@ -17,26 +19,22 @@ import hello.hellospring2.repository.MemoryMemberRepository;
 @Transactional
 public class MemberServiceIntegrationtest {
 	
-	MemberService memberService;
+	@Autowired MemberService memberService;
 	
-	MemoryMemberRepository memberRepository;
-	
-	@BeforeEach
-	public void beforeEach() { //테스트를 실행 하기전 먼저 실행됨(DI)
-		memberRepository = new MemoryMemberRepository();
-		memberService = new MemberService(memberRepository) ;
-	}
+	@Autowired MemberRepository memberRepository;
 	
 	
-	@AfterEach
-	public void afterEach() {
-		memberRepository.clearStore();
-	}
+	
+	
+//	@AfterEach
+//	public void afterEach() {
+//		memberRepository.clearStore();
+//	} ============= h2이기 때문에 필요없어짐
 	
 	@Test
 	void join() {
 		Member member = new Member();
-		member.setName("hellp");
+		member.setName("spring");
 		
 		Long saveId = memberService.join(member);
 		
@@ -59,15 +57,6 @@ public class MemberServiceIntegrationtest {
 				() -> memberService.join(member2)); // 해당 클레스의 예외가 발생할 때 join로직을 실행시킴.
 		
 		assertThat(assertThrows2.getMessage()).isEqualTo("이미 존재하는 회원입니다.");
-		
-	}
-	@Test
-	void findMembers() {
-		
-	}
-	
-	@Test
-	void findOne() {
 		
 	}
 }

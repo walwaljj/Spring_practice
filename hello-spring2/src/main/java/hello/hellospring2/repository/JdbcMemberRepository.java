@@ -1,19 +1,12 @@
 package hello.hellospring2.repository;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import hello.hellospring2.domain.Member;
+import org.springframework.jdbc.datasource.DataSourceUtils;
+import javax.sql.DataSource;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-
-import javax.sql.DataSource;
-
-import org.springframework.jdbc.datasource.DataSourceUtils;
-
-import hello.hellospring2.domain.Member;
 
 public class JdbcMemberRepository implements MemberRepository {
 	 
